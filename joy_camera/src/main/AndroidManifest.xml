@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.joyhonest.joy_camera">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/ -->
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        >
+        <activity android:name="SettingsActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            />
+        <activity android:name="HelpActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            />
+        <activity
+            android:name="FirstActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape">
+            <!--        <intent-filter>-->
+            <!--            <action android:name="android.intent.action.MAIN" />-->
+
+            <!--            <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--        </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".Joyh_MainActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="DispVideoActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="DispPhotoActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="BrowSelectActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="GridActivity"
+            android:theme="@style/FullScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+    </application>
+
+</manifest>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="VideoTheme" parent="FullScreen">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@mipmap/start_image</item>
+    </style>
+
+    <style name="AlertDialogss" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">#00000000</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:topDark">#80000000</item>
+    </style>
+
+    <style name="AlertDialogsss" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">#FFFFFFFF</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 自定义弹出样式 -->
+    <style name="MyDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+        <item name="android:layout_gravity">center</item>
+
+    </style>
+
+</resources>

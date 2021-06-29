@@ -1,0 +1,6 @@
+include ':app'
+//, ':jh_terracopter'
+//rootProject.name = "TerraCopter_Lib"
+//include ':app'
+//include ':jh_terracopter'
+include ':joy_camera'

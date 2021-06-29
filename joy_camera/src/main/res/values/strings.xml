@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">TerraCopter</string>
+    <string name="start">start</string>
+    <string name="GALLERY">GALLERY</string>
+    <string name="PHOTOS">PHOTOS</string>
+    <string name="VIDEOS">VIDEOS</string>
+    <string name="Do_you_sure_delete">Do_you_sure_delete</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Edit">Edit</string>
+    <string name="Delete">Delete</string>
+    <string name="SelectALL">SelectALL</string>
+    <string name="OK">OK</string>
+    <string name="abc">abc</string>
+    <string name="delete">delete</string>
+    <string name="cancel">cancel</string>
+    <string name="WARNING">WARNING</string>
+    <string name="downloading">downloading</string>
+    <string name="Loading_data">loading_data</string>
+    <string name="control_interface_guide">CONTROL INTERFACE GUIDE</string>
+    <string name="parameters_settings">PARAMETERS SETTINGS</string>
+
+</resources>
