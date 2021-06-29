@@ -50,3 +50,6 @@ dependencies {
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     implementation 'com.github.joyhonest:WifiCamera:4.8.7'
 }
+
+//git commit -m "xxx" -a
+//git push -u origin main
