@@ -35,6 +35,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
 
     boolean  bFlip = false;
 
+
+
+
     //判断视频状态
     public static boolean bisRecording = false;
 
@@ -97,9 +100,32 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-        bDispController = MyApp.bisShowControler;
-        F_DispController();
+        bDispController =  false; //MyApp.bisShowControler;
+
         F_DispLeftRightControl();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(!MyApp.bisHighLimited)
+                {
+                    if (!MyApp.bisRightMode) {
+                        binding.customRockerLeftJH.bReCenter = false;
+                        binding.customRockerRightJH.bReCenter = true;
+
+                        binding.customRockerLeftJH.ResetY();
+
+                    } else {
+                        binding.customRockerLeftJH.bReCenter = true;
+                        binding.customRockerRightJH.bReCenter = false;
+                        binding.customRockerRightJH.ResetY();
+                    }
+                }
+                bDispController = MyApp.bisShowControler;
+                F_DispController();
+            }
+        },100);
+
+
 
         EventBus.getDefault().register(this);
 
@@ -137,6 +163,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     {
         if(!bDispController)
             return;
+
         int X1 = binding.customRockerLeftJH.GetX();
         int Y1 = binding.customRockerLeftJH.GetY();
         int X2 = binding.customRockerRightJH.GetX();
@@ -155,7 +182,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
             Y_ADJ2 = binding.topSeekBarA.F_GetValue();
         }
 
-        Log.e(TAG,"X1AD ="+X_ADJ1+"  X2ADJ =" +X_ADJ2+"  Y2ADJ =" +Y_ADJ2);
+//        Log.e(TAG, "Y1 = "+Y1+" X1 = "+X1+" Y2 = "+Y2+" X2 = "+X2);
+//
+//        Log.e(TAG,"X1AD ="+X_ADJ1+"  X2ADJ =" +X_ADJ2+"  Y2ADJ =" +Y_ADJ2);
 
         if (X2 > 0x70 && X2 < 0x90) {
             X2 = 0x80;
@@ -205,6 +234,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         cmd[1] = (byte) Y2;
         cmd[2] = (byte) X1;
         cmd[3] = (byte) X2;
+
+        Log.e(TAG,"UP ="+Y1);
+
 
         cmd[4] = 0x20;          //油门微调  这里没有。
 
@@ -286,6 +318,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         }
         cmd[9] = (byte) (((cmd[0] ^ cmd[1] ^ cmd[2] ^ cmd[3] ^ cmd[4] ^ cmd[5] ^ cmd[6] ^ cmd[7] ^ cmd[8]) & 0xFF) + 0x55);
         wifination.naSentCmd(cmd, 10);
+
     }
 
 
@@ -454,7 +487,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         MyApp.PlayBtnVoice();
     }
 
-    boolean  bDispController = true;
+    boolean  bDispController = false;
 
 
     private void F_DispController()
@@ -466,6 +499,22 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         else
         {
             binding.ConTroller.setVisibility(View.INVISIBLE);
+        }
+        if(MyApp.bisHighLimited) {
+                binding.customRockerLeftJH.bReCenter=true;
+                binding.customRockerRightJH.bReCenter=true;
+        }
+        else
+        {
+            if(!MyApp.bisRightMode) {
+                binding.customRockerLeftJH.bReCenter = false;
+                binding.customRockerRightJH.bReCenter = true;
+            }
+            else
+            {
+                binding.customRockerLeftJH.bReCenter = true;
+                binding.customRockerRightJH.bReCenter = false;
+            }
         }
     }
 

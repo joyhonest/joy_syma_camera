@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void init(Context context){
         SharedPreferences setting=context.getSharedPreferences("setting",MODE_PRIVATE);
-        MyApp.bisHighLimited= setting.getBoolean("HighLimited",false);
+        MyApp.bisHighLimited= setting.getBoolean("HighLimited",true);
         MyApp.bisRightMode= setting.getBoolean("RightMode",false);
         MyApp.bisShowControler=setting.getBoolean("ShowControler",true);
         MyApp.bisAutoSave=setting.getBoolean("AutoSave",false);

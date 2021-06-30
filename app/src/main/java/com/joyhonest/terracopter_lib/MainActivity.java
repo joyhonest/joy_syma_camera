@@ -18,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_Start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApp.bisHighLimited = false;
+                MyApp.bisRightMode = true;
+                MyApp.bisShowControler = true;
+                MyApp.bisAutoSave = false;
+                MyApp.bisResetTuneData = false;
                 startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Joyh_MainActivity.class));
             }
         });

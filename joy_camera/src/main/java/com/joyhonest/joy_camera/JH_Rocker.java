@@ -24,6 +24,9 @@ import androidx.annotation.Nullable;
 public class JH_Rocker extends View {
     private static final String TAG = "CustomRockerJH";
 
+
+    //public boolean bHightLimited = true;
+    public boolean   bReCenter = true;
     //默认摇杆区域的大小和摇杆大小
     private static final int DEFAULT_SIZE = 400;
     private static final int DEFAULT_ROCKER_RADIUS = DEFAULT_SIZE / 8;
@@ -217,6 +220,15 @@ public class JH_Rocker extends View {
     }
 
 
+    public void ResetY()
+    {
+        int movex = mCenterPoint.x;
+        int movey = mCenterPoint.y+3000;
+
+        mRockerPosition = getRockerPositionPoint(mCenterPoint, new Point((int) movex, (int) movey), mAreaRadius, mRockerRadius);
+        //移动摇杆到指定位置
+        moveRocker(mRockerPosition.x, mRockerPosition.y);
+    }
 
 
     @Override
@@ -281,23 +293,29 @@ public class JH_Rocker extends View {
                 //开启回调
                 callBackStart();
                 break;
-            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_MOVE: {
                 float movex = event.getX();
                 float movey = event.getY();
                 mRockerPosition = getRockerPositionPoint(mCenterPoint, new Point((int) movex, (int) movey), mAreaRadius, mRockerRadius);
                 //移动摇杆到指定位置
                 moveRocker(mRockerPosition.x, mRockerPosition.y);
+            }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 // 回调 结束
+            {
                 callBackFinish();
-                float upX = event.getX();
-                float upY = event.getY();
+
+                float movex = event.getX();
+                float movey = event.getY();
                 //回到中心点
-                moveRocker(mCenterPoint.x, mCenterPoint.y);
-                mPercentXA = 50;
-                mPercentYA = 50;
+                if (bReCenter) {
+                    moveRocker(mCenterPoint.x, mCenterPoint.y);
+                    mPercentXA = 50;
+                    mPercentYA = 50;
+                }
+            }
                 //Log.i(TAG, "onTouchEvent: 抬起位置 : x = " + upX + " y = " + upY);
                 break;
         }
