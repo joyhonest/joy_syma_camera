@@ -315,6 +315,11 @@ public class JH_Rocker extends View {
                     mPercentXA = 50;
                     mPercentYA = 50;
                 }
+                else
+                {
+                    moveRocker(mCenterPoint.x, mRockerPosition.y);
+                    mPercentXA = 50;
+                }
             }
                 //Log.i(TAG, "onTouchEvent: 抬起位置 : x = " + upX + " y = " + upY);
                 break;
