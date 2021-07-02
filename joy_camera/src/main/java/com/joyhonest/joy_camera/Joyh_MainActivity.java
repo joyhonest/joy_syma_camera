@@ -602,7 +602,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     }
     void F_GetPermissions()
     {
-        MyApp.F_CreateLocalDir();
+        MyApp.F_CreateLocalDir("TerraCopter");
         if(nAsk==0)
         {
             if(MyApp.bIsConnect) {

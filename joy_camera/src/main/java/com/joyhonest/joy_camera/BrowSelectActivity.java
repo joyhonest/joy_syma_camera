@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.joyhonest.joy_camera.databinding.ActivityJhUltradroneBinding;
 import com.joyhonest.joy_camera.databinding.JoyhActivityBrowSelectBinding;
 import com.joyhonest.wifination.wifination;
 
@@ -13,6 +14,9 @@ import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
 public class BrowSelectActivity extends AppCompatActivity {
+
+
+
 
     private JoyhActivityBrowSelectBinding binding;
     @Override

@@ -39,6 +39,11 @@ public class MyApp  // extends Application
 {
 
 
+    public  static  boolean bBrowPhoto = false;
+
+
+
+
     public static  int nBattery = 3;
     //按钮声音
     private static int music_photo = -1;
@@ -112,12 +117,13 @@ public class MyApp  // extends Application
     }
 
 
-    public static void F_CreateLocalDir(){
+    public static void F_CreateLocalDir(String str){
         boolean mRemote=false;
         String StroragePath="";
         String sVendor="";
         String sVendor_SD=null;
-        sVendor="TerraCopter";
+        sVendor=str;
+
         if (isAndroidQ()){
             File file = singleton.getExternalFilesDir(sVendor);
             if (file!=null){
@@ -425,7 +431,7 @@ public class MyApp  // extends Application
     }
 
     //获取是否存在NavigationBar
-    private static void checkDeviceHasNavigationBar(Context context) {
+    public  static void checkDeviceHasNavigationBar(Context context) {
         boolean hasNavigationBar = false;
 
         Activity activity = (Activity) context;

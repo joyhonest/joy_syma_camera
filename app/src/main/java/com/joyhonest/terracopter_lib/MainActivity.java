@@ -18,12 +18,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_Start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                com.joyhonest.joy_camera.MyApp.bisHighLimited = false;
-                com.joyhonest.joy_camera.MyApp.bisRightMode = false;
-                com.joyhonest.joy_camera.MyApp.bisShowControler = true;
-                com.joyhonest.joy_camera.MyApp.bisAutoSave = false;
-                com.joyhonest.joy_camera.MyApp.bisResetTuneData = false;
-                startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Joyh_MainActivity.class));
+//                com.joyhonest.joy_camera.MyApp.bisHighLimited = false;
+//                com.joyhonest.joy_camera.MyApp.bisRightMode = false;
+//                com.joyhonest.joy_camera.MyApp.bisShowControler = true;
+//                com.joyhonest.joy_camera.MyApp.bisAutoSave = false;
+//                com.joyhonest.joy_camera.MyApp.bisResetTuneData = false;
+                //startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Joyh_MainActivity.class));
+                startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Ultradrone.JH_UltradroneActivity.class));
             }
         });
 

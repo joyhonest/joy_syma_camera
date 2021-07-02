@@ -40,6 +40,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     implementation project(':joy_camera')
-    //implementation 'com.github.joyhonest:joy_syma_camera:1.2'
+    //implementation 'com.github.joyhonest:joy_syma_camera:1.3'
 
 }

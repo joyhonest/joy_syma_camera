@@ -5,58 +5,64 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/ -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:supportsRtl="true"
-        >
-        <activity android:name="SettingsActivity"
-            android:theme="@style/FullScreen"
+        android:supportsRtl="true">
+        <activity android:name=".Ultradrone.JH_UltradroneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensorLandscape"
-            />
-        <activity android:name="HelpActivity"
-            android:theme="@style/FullScreen"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape"
-            />
-        <activity
-            android:name="FirstActivity"
-            android:theme="@style/FullScreen"
-            android:configChanges="keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape">
-            <!--        <intent-filter>-->
-            <!--            <action android:name="android.intent.action.MAIN" />-->
+            android:theme="@style/FullScreen"/>
 
-            <!--            <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--        </intent-filter>-->
+        <activity
+            android:name=".SettingsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".HelpActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".FirstActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".Joyh_MainActivity"
-            android:theme="@style/FullScreen"
             android:configChanges="keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
         <activity
-            android:name="DispVideoActivity"
-            android:theme="@style/FullScreen"
+            android:name=".DispVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
         <activity
-            android:name="DispPhotoActivity"
-            android:theme="@style/FullScreen"
+            android:name=".DispPhotoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
         <activity
-            android:name="BrowSelectActivity"
-            android:theme="@style/FullScreen"
+            android:name=".BrowSelectActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
         <activity
-            android:name="GridActivity"
-            android:theme="@style/FullScreen"
+            android:name=".GridActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreen" />
     </application>
 
 </manifest>
