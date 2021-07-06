@@ -171,8 +171,8 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         bExit = false;
-        _Init_Theard init = new _Init_Theard();
-        init.start();
+//        _Init_Theard init = new _Init_Theard();
+//        init.start();
 
         EventBus.getDefault().register(this);
 

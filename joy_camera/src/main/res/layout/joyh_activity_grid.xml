@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/gallery_bg"
     tools:context=".JOYH_GridActivity">
-
+<!--    android:background="@mipmap/gallery_bg"-->
 
 
 
