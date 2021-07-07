@@ -52,19 +52,19 @@ public class SettingsActivity extends AppCompatActivity {
 
         //判断是ON还是OFF显示按钮
         if (MyApp.bisHighLimited){
-            binding.btnSupportHigh.setBackgroundResource(R.mipmap.switch_on);
+            binding.btnSupportHigh.setBackgroundResource(R.mipmap.switch_on_jh);
         }
         if(MyApp.bisRightMode){
-            binding.btnRightHandMode.setBackgroundResource(R.mipmap.switch_on);
+            binding.btnRightHandMode.setBackgroundResource(R.mipmap.switch_on_jh);
         }
         if (MyApp.bisShowControler){
-            binding.btnShowInterface.setBackgroundResource(R.mipmap.switch_on);
+            binding.btnShowInterface.setBackgroundResource(R.mipmap.switch_on_jh);
         }
         if (MyApp.bisAutoSave){
-            binding.btnAutoSaveFineTune.setBackgroundResource(R.mipmap.switch_on);
+            binding.btnAutoSaveFineTune.setBackgroundResource(R.mipmap.switch_on_jh);
         }
         if (MyApp.bisResetTuneData){
-            binding.btnPreview.setBackgroundResource(R.mipmap.switch_on);
+            binding.btnPreview.setBackgroundResource(R.mipmap.switch_on_jh);
         }
 
 
@@ -82,12 +82,12 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MyApp.PlayBtnVoice();
                 if (!MyApp.bisHighLimited) {
-                    binding.btnSupportHigh.setBackgroundResource(R.mipmap.switch_on);
+                    binding.btnSupportHigh.setBackgroundResource(R.mipmap.switch_on_jh);
                     MyApp.bisHighLimited=true;
                     editor.putBoolean("HighLimited",MyApp.bisHighLimited);
 
                 }else {
-                    binding.btnSupportHigh.setBackgroundResource(R.mipmap.switch_off);
+                    binding.btnSupportHigh.setBackgroundResource(R.mipmap.switch_off_jh);
                     MyApp.bisHighLimited=false;
                     editor.putBoolean("HighLimited",MyApp.bisHighLimited);
                 }
@@ -100,11 +100,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MyApp.PlayBtnVoice();
                 if (!MyApp.bisRightMode) {
-                    binding.btnRightHandMode.setBackgroundResource(R.mipmap.switch_on);
+                    binding.btnRightHandMode.setBackgroundResource(R.mipmap.switch_on_jh);
                     MyApp.bisRightMode=true;
                     editor.putBoolean("RightMode",MyApp.bisRightMode);
                 }else {
-                    binding.btnRightHandMode.setBackgroundResource(R.mipmap.switch_off);
+                    binding.btnRightHandMode.setBackgroundResource(R.mipmap.switch_off_jh);
                     MyApp.bisRightMode=false;
                     editor.putBoolean("RightMode",MyApp.bisRightMode);
 
@@ -118,11 +118,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MyApp.PlayBtnVoice();
                 if (!MyApp.bisShowControler){
-                    binding.btnShowInterface.setBackgroundResource(R.mipmap.switch_on);
+                    binding.btnShowInterface.setBackgroundResource(R.mipmap.switch_on_jh);
                     MyApp.bisShowControler=true;
                     editor.putBoolean("ShowControler",MyApp.bisShowControler);
                 }else {
-                    binding.btnShowInterface.setBackgroundResource(R.mipmap.switch_off);
+                    binding.btnShowInterface.setBackgroundResource(R.mipmap.switch_off_jh);
                     MyApp.bisShowControler=false;
                     editor.putBoolean("ShowControler",MyApp.bisShowControler);
                 }
@@ -135,11 +135,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MyApp.PlayBtnVoice();
                 if (!MyApp.bisAutoSave){
-                    binding.btnAutoSaveFineTune.setBackgroundResource(R.mipmap.switch_on);
+                    binding.btnAutoSaveFineTune.setBackgroundResource(R.mipmap.switch_on_jh);
                     MyApp.bisAutoSave=true;
                     editor.putBoolean("AutoSave",MyApp.bisAutoSave);
                 }else {
-                    binding.btnAutoSaveFineTune.setBackgroundResource(R.mipmap.switch_off);
+                    binding.btnAutoSaveFineTune.setBackgroundResource(R.mipmap.switch_off_jh);
                     MyApp.bisAutoSave=false;
                     editor.putBoolean("AutoSave",MyApp.bisAutoSave);
                 }
@@ -152,11 +152,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MyApp.PlayBtnVoice();
                 if (!MyApp.bisResetTuneData){
-                    binding.btnPreview.setBackgroundResource(R.mipmap.switch_on);
+                    binding.btnPreview.setBackgroundResource(R.mipmap.switch_on_jh);
                     MyApp.bisResetTuneData=true;
                     editor.putBoolean("Reset",MyApp.bisResetTuneData);
                 }else {
-                    binding.btnPreview.setBackgroundResource(R.mipmap.switch_off);
+                    binding.btnPreview.setBackgroundResource(R.mipmap.switch_off_jh);
                     MyApp.bisResetTuneData=false;
                     editor.putBoolean("Reset",MyApp.bisResetTuneData);
                 }

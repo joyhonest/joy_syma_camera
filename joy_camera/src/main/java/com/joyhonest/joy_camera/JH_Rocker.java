@@ -400,11 +400,11 @@ public class JH_Rocker extends View {
 
 
             if(bRight){
-                mAreaBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.arearight);
+                mAreaBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.arearight_jh);
             }
             else
             {
-                mAreaBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.arealeft);
+                mAreaBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.arealeft_jh);
             }
             invalidate();
 
@@ -416,10 +416,10 @@ public class JH_Rocker extends View {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.JH_Rocker);
         //设置移动区域背景
         String areaback=typedArray.getString(R.styleable.JH_Rocker_areaBackground);
-        mAreaBitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.arealeft);
+        mAreaBitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.arealeft_jh);
         if (areaback!=null){
         if (areaback.equals("right")){
-            mAreaBitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.arearight);
+            mAreaBitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.arearight_jh);
         }
         }
 

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_jh01"
+    android:background="@mipmap/background_jh01_jh"
     tools:context=".Ultradrone.JH_UltradroneActivity">
     <ImageView
         android:id="@+id/DispImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@mipmap/background_jh01"
+        android:background="@mipmap/background_jh01_jh"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="15dp"
 
-            android:background="@mipmap/vr_icon_jh01"
+            android:background="@mipmap/vr_icon_jh01_jh"
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintEnd_toStartOf="@+id/but_snap"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
-            android:background="@mipmap/snap_icon_jh01"
+            android:background="@mipmap/snap_icon_jh01_jh"
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintEnd_toStartOf="@+id/but_record"
             app:layout_constraintStart_toEndOf="@+id/but_vr"
@@ -57,7 +57,7 @@
             android:id="@+id/but_record"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@mipmap/record_icon_jh01"
+            android:background="@mipmap/record_icon_jh01_jh"
 
             app:layout_constraintDimensionRatio="H,5:3"
 
@@ -73,7 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
-            android:background="@mipmap/brow_icon_jh01"
+            android:background="@mipmap/brow_icon_jh01_jh"
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintEnd_toStartOf="@+id/but_signe"
             app:layout_constraintStart_toEndOf="@+id/but_record"
@@ -86,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
-            android:background="@mipmap/wifi00_icon_jh01"
+            android:background="@mipmap/wifi00_icon_jh01_jh"
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintEnd_toStartOf="@+id/but_return"
             app:layout_constraintStart_toEndOf="@+id/but_brow"
@@ -98,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
-            android:background="@mipmap/return_icon_jh01"
+            android:background="@mipmap/return_icon_jh01_jh"
 
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintEnd_toEndOf="parent"

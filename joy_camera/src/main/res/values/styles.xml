@@ -7,7 +7,7 @@
     <style name="VideoTheme" parent="FullScreen">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@mipmap/start_image</item>
+        <item name="android:windowBackground">@mipmap/start_image_jh</item>
     </style>
 
     <style name="AlertDialogss" parent="Theme.AppCompat.Light.Dialog">

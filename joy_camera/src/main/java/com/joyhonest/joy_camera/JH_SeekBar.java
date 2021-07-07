@@ -312,11 +312,11 @@ public class JH_SeekBar extends View {
             mOrientation = orientation;
             bIsMode = true;
 
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.seekbartop);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.seekbartop_jh);
         } else {
             mOrientation = orientation;
 
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.jiantou);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.jiantou_jh);
             bIsMode = false;
         }
         mPaint = new Paint();

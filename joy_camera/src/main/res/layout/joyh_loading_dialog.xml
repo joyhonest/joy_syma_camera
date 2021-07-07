@@ -11,14 +11,14 @@
     android:background="#00000000">
     <ImageView
         android:id="@+id/img"
-        android:src="@mipmap/loading"
+        android:src="@mipmap/loading_jh"
         android:layout_width="50dp"
         android:layout_height="50dp" />
     <TextView
         android:id="@+id/tipTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Loading_data"
+        android:text="@string/JOY_Loading_data"
         android:textColor="#FFFF0000"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"

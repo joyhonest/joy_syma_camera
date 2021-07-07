@@ -54,7 +54,8 @@ public class Joyh_PermissionAsker {
         int result=0;
         //PackageManager.PERMISSION_GRANTED
         for (String p:permission){
-            result+=ActivityCompat.checkSelfPermission(context,p);
+            int da = ActivityCompat.checkSelfPermission(context,p);
+            result+=da;
         }
         if(result==0){
             mOkRun.run();

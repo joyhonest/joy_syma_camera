@@ -98,8 +98,8 @@ public class MyApp  // extends Application
             soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
         }
 
-        music_photo = soundPool.load(context, R.raw.photo_m, 1);
-        music_btn = soundPool.load(context, R.raw.button46, 1);
+        music_photo = soundPool.load(context, R.raw.photo_m_joy, 1);
+        music_btn = soundPool.load(context, R.raw.button46_joy, 1);
 
     }
 
@@ -575,7 +575,9 @@ public class MyApp  // extends Application
         return singleton.getSharedPreferences(str, 0);
     }
     public static boolean isAndroidQ(){
-        return (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q);
+       // return (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q);
+        return false;
+
     }
 
 

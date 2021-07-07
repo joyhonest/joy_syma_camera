@@ -1,22 +1,21 @@
 <resources>
-    <string name="app_name">TerraCopter</string>
     <string name="start">start</string>
-    <string name="GALLERY">GALLERY</string>
-    <string name="PHOTOS">PHOTOS</string>
-    <string name="VIDEOS">VIDEOS</string>
-    <string name="Do_you_sure_delete">Do_you_sure_delete</string>
-    <string name="Cancel">Cancel</string>
-    <string name="Edit">Edit</string>
-    <string name="Delete">Delete</string>
-    <string name="SelectALL">SelectALL</string>
-    <string name="OK">OK</string>
-    <string name="abc">abc</string>
-    <string name="delete">delete</string>
-    <string name="cancel">cancel</string>
-    <string name="WARNING">WARNING</string>
-    <string name="downloading">downloading</string>
-    <string name="Loading_data">loading_data</string>
-    <string name="control_interface_guide">CONTROL INTERFACE GUIDE</string>
-    <string name="parameters_settings">PARAMETERS SETTINGS</string>
+    <string name="JOY_GALLERY">GALLERY</string>
+    <string name="JOY_PHOTOS">PHOTOS</string>
+    <string name="JOY_VIDEOS">VIDEOS</string>
+    <string name="JOY_Do_you_sure_delete">Do_you_sure_delete</string>
+    <string name="JOY_Cancel">Cancel</string>
+    <string name="JOY_Edit">Edit</string>
+    <string name="JOY_Delete">Delete</string>
+    <string name="JOY_SelectALL">SelectALL</string>
+    <string name="JOY_OK">OK</string>
+    <string name="JOY_abc">abc</string>
+    <string name="JOY_delete">delete</string>
+    <string name="JOY_cancel">cancel</string>
+    <string name="JOY_WARNING">WARNING</string>
+    <string name="JOY_downloading">downloading</string>
+    <string name="JOY_Loading_data">loading_data</string>
+    <string name="JOY_control_interface_guide">CONTROL INTERFACE GUIDE</string>
+    <string name="JOY_parameters_settings">PARAMETERS SETTINGS</string>
 
 </resources>

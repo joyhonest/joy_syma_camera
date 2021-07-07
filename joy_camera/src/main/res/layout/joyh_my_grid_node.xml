@@ -13,14 +13,14 @@
             android:layout_height="100dp"
             android:id="@+id/Grid_imageView1"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/video_bg_jh" />
 
         <ImageView
             android:id="@+id/video_bg"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerCrop"
-            android:background="@mipmap/video_bg"
+            android:background="@mipmap/video_bg_jh"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:visibility="invisible"/>
@@ -29,7 +29,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
 
-            android:src="@mipmap/download_icon"
+            android:src="@mipmap/download_icon_jh"
             android:layout_alignRight="@+id/Grid_imageView1"
             />
 

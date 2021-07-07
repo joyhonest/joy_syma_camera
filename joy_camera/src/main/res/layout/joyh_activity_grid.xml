@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/gallery_bg"
+    android:background="@mipmap/gallery_bg_jh"
     tools:context=".JOYH_GridActivity">
 <!--    android:background="@mipmap/gallery_bg"-->
 
@@ -16,7 +16,7 @@
         android:layout_height="0dp"
 
         android:gravity="center"
-        android:text="@string/PHOTOS"
+        android:text="@string/JOY_PHOTOS"
         android:textColor="#FFFFFFFF"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:id="@+id/but_delete"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="@string/delete"
+        android:text="@string/JOY_delete"
         android:textColor="#FF007AFF"
         android:textSize="24dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginRight="20dp"
-        android:text="@string/cancel"
+        android:text="@string/JOY_cancel"
         android:textColor="#FF007AFF"
         android:textSize="24dp"
         app:layout_constraintRight_toLeftOf="@+id/but_delete"
@@ -81,7 +81,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:background="@mipmap/back_icon"
+        android:background="@mipmap/back_icon_jh"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHeight_percent="0.18"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +128,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#FFFFFFFF"
-                android:text="@string/OK"
+                android:text="@string/JOY_OK"
                 android:textColor="#0090ff"
                 android:layout_marginLeft="2dp"
 
@@ -146,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="#FFFFFFFF"
-                android:text="@string/cancel"
+                android:text="@string/JOY_cancel"
                 android:textColor="#0090ff"
 
 
@@ -166,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/WARNING"
+                android:text="@string/JOY_WARNING"
                 android:textColor="#000"
                 android:textSize="16dp"
                 android:textStyle="bold"
@@ -185,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/Do_you_sure_delete"
+                android:text="@string/JOY_Do_you_sure_delete"
                 android:textColor="#000"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"

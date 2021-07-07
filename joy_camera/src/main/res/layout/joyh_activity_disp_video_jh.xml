@@ -41,7 +41,7 @@
             android:layout_width="35dp"
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
-            android:background="@mipmap/back_icon"
+            android:background="@mipmap/back_icon_jh"
 
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"

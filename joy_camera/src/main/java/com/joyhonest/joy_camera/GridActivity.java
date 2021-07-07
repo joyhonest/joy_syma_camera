@@ -73,11 +73,11 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
 
         if(MyApp.BROW_TYPE == MyApp.Brow_Video)
         {
-            binding.TitleView.setText(R.string.VIDEOS);
+            binding.TitleView.setText(R.string.JOY_VIDEOS);
         }
         else
         {
-            binding.TitleView.setText(R.string.PHOTOS);
+            binding.TitleView.setText(R.string.JOY_PHOTOS);
         }
         binding.butCancel.setVisibility(View.INVISIBLE);
         binding.butDelete.setVisibility(View.INVISIBLE);
@@ -177,7 +177,6 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     @Subscriber(tag = "GotoExit")
     private  void GotoExit(String str)
     {
@@ -265,39 +264,30 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         if (sPath != null) {
             File file = new File(sPath);
             File files[] = file.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                File f = files[i];
-                String sFilename = f.getName(); //f.getAbsolutePath();
-                sFilename = sFilename.toLowerCase();
-
-                String sVedor = f.getParent();
-                sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
-
-                String slocal = "";
-                slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-
-
-                String sName = f.getPath();
-                String sPath1 = sName.toUpperCase();
-                if(sPath1.endsWith(".PNG") ||
-                        sPath1.endsWith(".JPG") ||
-                        sPath1.endsWith(".BMP")
-                )
-                {
-                    if(MyApp.isAndroidQ())
+            if(files != null) {
+                for (int i = 0; i < files.length; i++) {
+                    File f = files[i];
+                    //String sFilename = f.getName(); //f.getAbsolutePath();
+                    //sFilename = sFilename.toLowerCase();
+                    String sVedor = f.getParent();
+                    sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
+                    String slocal = "";
+                    String sPath1="";
+                    slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+                    String sName = f.getPath();
+                    sPath1 = sName.toUpperCase();
+                    if (sPath1.endsWith(".PNG") || sPath1.endsWith(".JPG") || sPath1.endsWith(".BMP"))
                     {
-                        if(MyApp.F_CheckIsExit(slocal,f.getName(),true))
+                        if (MyApp.isAndroidQ())
                         {
+                            if (MyApp.F_CheckIsExit(slocal, f.getName(), true)) {
+                                local_PhotolistFiles.add(f.getPath());
+                            } else {
+                                f.delete();
+                            }
+                        } else {
                             local_PhotolistFiles.add(f.getPath());
                         }
-                        else
-                        {
-                            f.delete();
-                        }
-                    }
-                    else {
-
-                        local_PhotolistFiles.add(f.getPath());
                     }
                 }
             }
@@ -316,39 +306,29 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         if (sPath != null) {
             File file = new File(sPath);
             File files[] = file.listFiles();
+            if(files !=null)
+            {
+                for (int i = 0; i < files.length; i++) {
 
-            for (int i = 0; i < files.length; i++) {
-
-                File f = files[i];
-                String sFilename = f.getName(); //f.getAbsolutePath();
-                sFilename = sFilename.toLowerCase();
-
-                String sVedor = f.getParent();
-                sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
-
-                String slocal = "";
-                slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-
-
-                String sName = f.getPath();
-                String sPath1 = sName.toUpperCase();
-                if(sPath1.endsWith(".MP4"))
-                {
-                    if(MyApp.isAndroidQ())
-                    {
-                        if(MyApp.F_CheckIsExit(slocal,f.getName(),false))
-                        {
+                    File f = files[i];
+                    String sVedor = f.getParent();
+                    sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
+                    String slocal = "";
+                    slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+                    String sName = f.getPath();
+                    String sPath1 = sName.toUpperCase();
+                    if (sPath1.endsWith(".MP4")) {
+                        if (MyApp.isAndroidQ()) {
+                            if (MyApp.F_CheckIsExit(slocal, f.getName(), false)) {
+                                local_VideolistFiles.add(f.getPath());
+                            } else {
+                                f.delete();
+                            }
+                        } else {
                             local_VideolistFiles.add(f.getPath());
                         }
-                        else
-                        {
-                            f.delete();
-                        }
-                    }
-                    else {
-                        local_VideolistFiles.add(f.getPath());
-                    }
 
+                    }
                 }
             }
         }
@@ -410,14 +390,13 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         bitmap = BitmapFactory.decodeFile(strs);
         if (bitmap != null)
             return bitmap;
-
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         // 获取这个图片的宽和高
         bitmap = BitmapFactory.decodeFile(sPath, options); //此时返回bm为空
         options.inJustDecodeBounds = false;
         //计算缩放比
-        int be = (int) (options.outHeight / (float) 100);
+        int be = (int) (options.outWidth / (float) 50);
         if (be <= 0)
             be = 1;
         options.inSampleSize = be;
@@ -441,7 +420,7 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         try {
             retriever.setDataSource(filePath);
             bitmap = retriever.getFrameAtTime(1);
-            bitmap = ThumbnailUtils.extractThumbnail(bitmap, 100, 100);
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, 50, 50);
 
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -713,7 +692,7 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
                         holder.caption.setVisibility(View.VISIBLE);
                         if (node.nPre < 10)
                             node.nPre = 10;
-                        holder.caption.setText(getString(R.string.downloading) + " " + node.nPre / 10 + "%");
+                        holder.caption.setText(getString(R.string.JOY_downloading) + " " + node.nPre / 10 + "%");
                     } else {
                         holder.progressBar.setProgress(0);
                         holder.caption.setVisibility(View.INVISIBLE);
@@ -729,12 +708,12 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
                 if(node.nSelect == 1)
                 {
                     holder.SelectImg.setVisibility(View.VISIBLE);
-                    holder.SelectImg.setImageResource(R.mipmap.noselected_icon);
+                    holder.SelectImg.setImageResource(R.mipmap.noselected_icon_jh);
                 }
                 else if(node.nSelect == 2)
                 {
                     holder.SelectImg.setVisibility(View.VISIBLE);
-                    holder.SelectImg.setImageResource(R.mipmap.selected_icon);
+                    holder.SelectImg.setImageResource(R.mipmap.selected_icon_jh);
                 }
                 else
                 {

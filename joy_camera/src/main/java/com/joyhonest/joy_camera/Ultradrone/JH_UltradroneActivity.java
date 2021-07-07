@@ -1,5 +1,6 @@
 package com.joyhonest.joy_camera.Ultradrone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -100,11 +101,20 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
 
         EventBus.getDefault().register(this);
 
+        OpenCamerapHandler.removeCallbacksAndMessages(null);
+        OpenCamerapHandler.post(OpenCamerapRunnable);
+
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mAsker.onRequestPermissionsResult(grantResults);
+    }
 
-    int bmp[] = {R.mipmap.wifi01_icon_jh01,R.mipmap.wifi02_icon_jh01,R.mipmap.wifi03_icon_jh01,R.mipmap.wifi04_icon_jh01};
+
+    int bmp[] = {R.mipmap.wifi01_icon_jh01_jh,R.mipmap.wifi02_icon_jh01_jh,R.mipmap.wifi03_icon_jh01_jh,R.mipmap.wifi04_icon_jh01_jh};
     Runnable DispWifiRunnable = new Runnable() {
         @Override
         public void run() {
@@ -122,7 +132,7 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
             }
             else
             {
-                binding.butSigne.setBackgroundResource(R.mipmap.wifi00_icon_jh01);
+                binding.butSigne.setBackgroundResource(R.mipmap.wifi00_icon_jh01_jh);
             }
             DispWifiHandler.postDelayed(this,500);
         }
@@ -139,18 +149,14 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onStart() {
         super.onStart();
-        OpenCamerapHandler.removeCallbacksAndMessages(null);
-        OpenCamerapHandler.post(OpenCamerapRunnable);
+
 
     }
     @Override
     protected void onStop() {
         super.onStop();
-        OpenCamerapHandler.removeCallbacksAndMessages(null);
-        wifination.naStopRecord_All();
-        wifination.naStop();
+        Log.e(TAG,"onStop");
     }
-
 
     @Override
     protected void onResume() {
@@ -169,6 +175,13 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        OpenCamerapHandler.removeCallbacksAndMessages(null);
+        wifination.naStopRecord_All();
+        wifination.naStop();
+    }
 
     @Override
     public void onClick(View v) {
@@ -258,7 +271,7 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
         else if(nAsk == 2)
         {
             MyApp.PlayBtnVoice();
-       //     MyApp.bNormalExit = true;
+            wifination.naStopRecord_All();
             Intent mainIntent = new Intent(JH_UltradroneActivity.this, BrowSelectActivity.class);
             startActivity(mainIntent);
             overridePendingTransition(0, 0);

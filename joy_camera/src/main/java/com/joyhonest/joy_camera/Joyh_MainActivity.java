@@ -16,6 +16,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 
 import com.joyhonest.joy_camera.databinding.JoyhActivityMainBinding;
@@ -129,6 +130,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
 
 
         EventBus.getDefault().register(this);
+
+        OpenCamerapHandler.removeCallbacksAndMessages(null);
+        OpenCamerapHandler.post(OpenCamerapRunnable);
 
     }
 
@@ -326,8 +330,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onStart() {
         super.onStart();
-        OpenCamerapHandler.removeCallbacksAndMessages(null);
-        OpenCamerapHandler.post(OpenCamerapRunnable);
+
         H_Send.removeCallbacksAndMessages(null);
         H_Send.post(SentCmdRunnable);
 
@@ -336,9 +339,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     protected void onStop() {
         super.onStop();
         H_Send.removeCallbacksAndMessages(null);
-        OpenCamerapHandler.removeCallbacksAndMessages(null);
-        wifination.naStopRecord_All();
-        wifination.naStop();
+//        OpenCamerapHandler.removeCallbacksAndMessages(null);
+//        wifination.naStopRecord_All();
+//        wifination.naStop();
 
     }
 
@@ -448,11 +451,11 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     {
         if(MyApp.nSpeed == 0)
         {
-                binding.speed.setBackgroundResource(R.mipmap.speed_l);
+                binding.speed.setBackgroundResource(R.mipmap.speed_l_jh);
         }
         else
         {
-            binding.speed.setBackgroundResource(R.mipmap.speed_h);
+            binding.speed.setBackgroundResource(R.mipmap.speed_h_jh);
         }
     }
 
@@ -461,7 +464,11 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mAsker.onRequestPermissionsResult(grantResults);
+
+
     }
+
+
 
 
     private  void F_DispLeftRightControl()
@@ -630,6 +637,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         {
             MyApp.PlayBtnVoice();
        //     MyApp.bNormalExit = true;
+            wifination.naStopRecord_All();
             Intent mainIntent = new Intent(Joyh_MainActivity.this, BrowSelectActivity.class);
             startActivity(mainIntent);
             overridePendingTransition(0, 0);
