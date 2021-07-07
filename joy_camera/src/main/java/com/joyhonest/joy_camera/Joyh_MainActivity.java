@@ -11,8 +11,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.Display;
-import android.view.Surface;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -887,21 +885,13 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
 
     private  void tigerOrg()
     {
-
-
-        this.getDisplay();
-        Display display = getDisplay();
-
-
-        int screenRotation = display.getRotation();
-        if(screenRotation == Surface.ROTATION_90)
+        if(getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE)
         {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
         }
         else
         {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
         }
     }
 
