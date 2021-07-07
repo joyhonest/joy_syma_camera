@@ -82,12 +82,12 @@ public class DispVideoActivity extends AppCompatActivity {
 
     }
 
-//    @Subscriber(tag = "GotoExit")
-//    private  void GotoExit(String str)
-//    {
-//        finish();
-//        overridePendingTransition(0, 0);
-//    }
+    @Subscriber(tag = "GotoExit")
+    private  void GotoExit(String str)
+    {
+        finish();
+        overridePendingTransition(0, 0);
+    }
 
 
 }

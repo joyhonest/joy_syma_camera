@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.simple.eventbus.EventBus;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -572,9 +574,14 @@ public class MyApp  // extends Application
     {
         return singleton.getSharedPreferences(str, 0);
     }
-
     public static boolean isAndroidQ(){
         return (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q);
+    }
+
+
+    public static void F_Exit()
+    {
+         EventBus.getDefault().post("","GotoExit");
     }
 
 }

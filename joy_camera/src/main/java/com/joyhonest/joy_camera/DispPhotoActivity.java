@@ -161,12 +161,12 @@ public class DispPhotoActivity extends AppCompatActivity implements ViewPager.On
         return bitmap;
     }
 
-//    @Subscriber(tag = "GotoExit")
-//    private  void GotoExit(String str)
-//    {
-//        finish();
-//        overridePendingTransition(0, 0);
-//    }
+    @Subscriber(tag = "GotoExit")
+    private  void GotoExit(String str)
+    {
+        finish();
+        overridePendingTransition(0, 0);
+    }
 
 
 

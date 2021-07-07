@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.joyhonest.joy_camera.databinding.JoyhActivitySettingBinding;
 
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
+
 public class SettingsActivity extends AppCompatActivity {
     private JoyhActivitySettingBinding binding;
     private SharedPreferences.Editor editor;
@@ -26,8 +29,16 @@ public class SettingsActivity extends AppCompatActivity {
         //应用程序退出后，设置不会保存
         init(this);
 
+        EventBus.getDefault().register(this);
 
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void init(Context context){
@@ -159,5 +170,13 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         MyApp.F_makeFullScreen(this);
+    }
+
+
+    @Subscriber(tag = "GotoExit")
+    private  void GotoExit(String str)
+    {
+        finish();
+        overridePendingTransition(0, 0);
     }
 }

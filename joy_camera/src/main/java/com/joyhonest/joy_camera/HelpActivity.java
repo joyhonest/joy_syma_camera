@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.joyhonest.joy_camera.databinding.JoyhActivityHelpBinding;
 
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
+
 
 public class HelpActivity extends AppCompatActivity {
     private JoyhActivityHelpBinding binding;
@@ -40,7 +43,16 @@ public class HelpActivity extends AppCompatActivity {
         });
 
 
+        EventBus.getDefault().register(this);
 
+
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -86,5 +98,13 @@ public class HelpActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         MyApp.F_makeFullScreen(this);
+    }
+
+
+    @Subscriber(tag = "GotoExit")
+    private  void GotoExit(String str)
+    {
+        finish();
+        overridePendingTransition(0, 0);
     }
 }

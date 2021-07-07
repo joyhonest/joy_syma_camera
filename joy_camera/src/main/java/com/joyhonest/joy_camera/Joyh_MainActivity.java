@@ -902,4 +902,13 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    @Subscriber(tag = "GotoExit")
+    private  void GotoExit(String str)
+    {
+        wifination.naStopRecord_All();
+        wifination.naStop();
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
 }
