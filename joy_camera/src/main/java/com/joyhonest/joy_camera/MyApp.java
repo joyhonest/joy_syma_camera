@@ -583,7 +583,7 @@ public class MyApp  // extends Application
 
     public static void F_Exit()
     {
-         EventBus.getDefault().post("","GotoExit");
+         EventBus.getDefault().post("","GotoExit_joy");
     }
 
 }

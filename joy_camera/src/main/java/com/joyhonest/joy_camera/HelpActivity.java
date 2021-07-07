@@ -101,7 +101,7 @@ public class HelpActivity extends AppCompatActivity {
     }
 
 
-    @Subscriber(tag = "GotoExit")
+    @Subscriber(tag = "GotoExit_joy")
     private  void GotoExit(String str)
     {
         finish();

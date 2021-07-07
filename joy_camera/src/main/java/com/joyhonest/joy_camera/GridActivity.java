@@ -177,8 +177,8 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Subscriber(tag = "GotoExit")
-    private  void GotoExit(String str)
+    @Subscriber(tag = "GotoExit_joy")
+    private  void GotoExit_joy(String str)
     {
         finish();
         overridePendingTransition(0, 0);
