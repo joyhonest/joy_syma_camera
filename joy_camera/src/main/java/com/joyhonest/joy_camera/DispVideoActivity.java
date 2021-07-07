@@ -49,15 +49,15 @@ public class DispVideoActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(!MyApp.bNormalExit)
-          EventBus.getDefault().post("","GotoExit");
+//        if(!MyApp.bNormalExit)
+//          EventBus.getDefault().post("","GotoExit");
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApp.bNormalExit = false;
+     //   MyApp.bNormalExit = false;
         MyApp.F_makeFullScreen(this);
     }
 
@@ -75,19 +75,19 @@ public class DispVideoActivity extends AppCompatActivity {
 //            super.onBackPressed();
 //            return;
 //        }
-        MyApp.bNormalExit = true;
+       // MyApp.bNormalExit = true;
         Jzvd.releaseAllVideos();
         super.onBackPressed();
 
 
     }
 
-    @Subscriber(tag = "GotoExit")
-    private  void GotoExit(String str)
-    {
-        finish();
-        overridePendingTransition(0, 0);
-    }
+//    @Subscriber(tag = "GotoExit")
+//    private  void GotoExit(String str)
+//    {
+//        finish();
+//        overridePendingTransition(0, 0);
+//    }
 
 
 }

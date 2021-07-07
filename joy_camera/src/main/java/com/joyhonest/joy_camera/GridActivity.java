@@ -143,15 +143,12 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
                     MyApp.dispList.clear();
                     if(MyApp.BROW_TYPE == MyApp.Brow_Photo)
                     {
-
-
-
                         for (MyNode nodea : nodes) {
                             MyApp.dispList.add(nodea.sPath);
                         }
                         MyApp.PlayBtnVoice();
                         MyApp.dispListInx = position;
-                        MyApp.bNormalExit = true;
+                  //      MyApp.bNormalExit = true;
                         Intent mainIntent = new Intent(GridActivity.this, DispPhotoActivity.class);
                         startActivity(mainIntent);
                         overridePendingTransition(0, 0);
@@ -160,7 +157,7 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
                     {
                         MyNode node = nodes.get(position);
                         MyApp.dispList.add(node.sPath);
-                        MyApp.bNormalExit = true;
+                  //      MyApp.bNormalExit = true;
                         //JzvdStd.startFullscreenDirectly(BrowGridActivity.this, JzvdStd.class, node.sPath, "饺子辛苦了");
                         startActivity(new Intent(GridActivity.this, DispVideoActivity.class));
                         overridePendingTransition(0, 0);
@@ -181,12 +178,12 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @Subscriber(tag = "GotoExit")
-    private  void GotoExit(String str)
-    {
-        finish();
-        overridePendingTransition(0, 0);
-    }
+//    @Subscriber(tag = "GotoExit")
+//    private  void GotoExit(String str)
+//    {
+//        finish();
+//        overridePendingTransition(0, 0);
+//    }
 
     @Override
     protected void onDestroy() {
@@ -197,21 +194,21 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        if(!MyApp.bNormalExit)
-            EventBus.getDefault().post("","GotoExit");
+//        if(!MyApp.bNormalExit)
+//            EventBus.getDefault().post("","GotoExit");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApp.bNormalExit = false;
+    //    MyApp.bNormalExit = false;
         MyApp.F_makeFullScreen(this);
 
     }
 
     @Override
     public void onBackPressed() {
-        MyApp.bNormalExit = true;
+     //   MyApp.bNormalExit = true;
         super.onBackPressed();
         MyApp.PlayBtnVoice();
     }

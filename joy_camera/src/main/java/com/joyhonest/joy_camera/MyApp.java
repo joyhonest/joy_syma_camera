@@ -55,7 +55,7 @@ public class MyApp  // extends Application
     public static String sLocalPath = "";
     public static String sSDPath = "";
     public static boolean bIsConnect = false;
-    public static  boolean  bNormalExit = false;
+  //  public static  boolean  bNormalExit = false;
 
     //保存按钮的ON和OFF设置，应用程序退出不会保存
     public static boolean bisHighLimited=true;

@@ -30,7 +30,6 @@ public class BrowSelectActivity extends AppCompatActivity {
         binding.butBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 onBackPressed();
             }
         });
@@ -45,7 +44,7 @@ public class BrowSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyApp.PlayBtnVoice();
-                wifination.naStopRecord(wifination.TYPE_ONLY_PHONE);
+                //wifination.naStopRecord(wifination.TYPE_ONLY_PHONE);
                 GotoGridAcitivty(MyApp.Brow_Video);
             }
         });
@@ -54,26 +53,25 @@ public class BrowSelectActivity extends AppCompatActivity {
     private  void GotoGridAcitivty( int nBrow)
     {
         MyApp.BROW_TYPE = nBrow;
-        MyApp.bNormalExit=true;
+//        MyApp.bNormalExit=true;
         Intent mainIntent = new Intent(this, GridActivity.class);
         startActivity(mainIntent);
         overridePendingTransition(0, 0);
 
     }
 
-    @Subscriber(tag = "GotoExit")
-    private  void GotoExit(String str)
-    {
-        finish();
-        overridePendingTransition(0, 0);
-    }
+//    @Subscriber(tag = "GotoExit")
+//    private  void GotoExit(String str)
+//    {
+//        finish();
+//        overridePendingTransition(0, 0);
+//    }
 
 
     @Override
     public void onBackPressed() {
-        MyApp.bNormalExit = true;
+      //  MyApp.bNormalExit = true;
         super.onBackPressed();
-
         MyApp.PlayBtnVoice();
     }
 
@@ -86,14 +84,14 @@ public class BrowSelectActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(!MyApp.bNormalExit)
-            EventBus.getDefault().post("","GotoExit");
+//        if(!MyApp.bNormalExit)
+//            EventBus.getDefault().post("","GotoExit");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApp.bNormalExit = false;
+     //   MyApp.bNormalExit = false;
         MyApp.F_makeFullScreen(this);
     }
 }

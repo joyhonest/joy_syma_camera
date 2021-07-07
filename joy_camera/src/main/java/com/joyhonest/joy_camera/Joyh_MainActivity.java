@@ -628,7 +628,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         else if(nAsk == 2)
         {
             MyApp.PlayBtnVoice();
-            MyApp.bNormalExit = true;
+       //     MyApp.bNormalExit = true;
             Intent mainIntent = new Intent(Joyh_MainActivity.this, BrowSelectActivity.class);
             startActivity(mainIntent);
             overridePendingTransition(0, 0);

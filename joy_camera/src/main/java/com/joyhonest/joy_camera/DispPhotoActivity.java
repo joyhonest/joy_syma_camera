@@ -59,20 +59,20 @@ public class DispPhotoActivity extends AppCompatActivity implements ViewPager.On
     @Override
     protected void onPause() {
         super.onPause();
-        if(!MyApp.bNormalExit)
-            EventBus.getDefault().post("a","GotoExit");
+//        if(!MyApp.bNormalExit)
+//            EventBus.getDefault().post("a","GotoExit");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        MyApp.bNormalExit = true;
+   //     MyApp.bNormalExit = true;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MyApp.bNormalExit = false;
+     //   MyApp.bNormalExit = false;
         MyApp.F_makeFullScreen(this);
 
     }
@@ -161,12 +161,12 @@ public class DispPhotoActivity extends AppCompatActivity implements ViewPager.On
         return bitmap;
     }
 
-    @Subscriber(tag = "GotoExit")
-    private  void GotoExit(String str)
-    {
-        finish();
-        overridePendingTransition(0, 0);
-    }
+//    @Subscriber(tag = "GotoExit")
+//    private  void GotoExit(String str)
+//    {
+//        finish();
+//        overridePendingTransition(0, 0);
+//    }
 
 
 

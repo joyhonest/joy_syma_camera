@@ -258,7 +258,7 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
         else if(nAsk == 2)
         {
             MyApp.PlayBtnVoice();
-            MyApp.bNormalExit = true;
+       //     MyApp.bNormalExit = true;
             Intent mainIntent = new Intent(JH_UltradroneActivity.this, BrowSelectActivity.class);
             startActivity(mainIntent);
             overridePendingTransition(0, 0);
