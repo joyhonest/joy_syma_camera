@@ -53,7 +53,6 @@ public class BrowSelectActivity extends AppCompatActivity {
     private  void GotoGridAcitivty( int nBrow)
     {
         MyApp.BROW_TYPE = nBrow;
-//        MyApp.bNormalExit=true;
         Intent mainIntent = new Intent(this, GridActivity.class);
         startActivity(mainIntent);
         overridePendingTransition(0, 0);
