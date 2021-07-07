@@ -58,6 +58,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =  JoyhActivityMainBinding.inflate(getLayoutInflater());
+        MyApp.bisHighLimited = true;
+        MyApp.bisRightMode = false;
+
         //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot());
 
