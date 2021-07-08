@@ -575,12 +575,9 @@ public class MyApp  // extends Application
         return singleton.getSharedPreferences(str, 0);
     }
     public static boolean isAndroidQ(){
-       // return (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q);
-        return false;
-
+        return (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q);
+        //return false;
     }
-
-
     public static void F_Exit()
     {
          EventBus.getDefault().post("","GotoExit_joy");
