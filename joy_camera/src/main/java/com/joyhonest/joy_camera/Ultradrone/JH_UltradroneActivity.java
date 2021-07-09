@@ -281,8 +281,8 @@ public class JH_UltradroneActivity extends AppCompatActivity implements View.OnC
     }
 
 
-    @Subscriber(tag = "ReviceBMP")
-    private void ReviceBMP(Bitmap bitmap) {
+    @Subscriber(tag = "ReceiveBMP")
+    private void ReceiveBMP(Bitmap bitmap) {
         binding.DispImageView.setImageBitmap(bitmap);
         MyApp.bIsConnect = true;
 
