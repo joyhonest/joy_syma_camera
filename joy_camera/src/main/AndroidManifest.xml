@@ -10,11 +10,12 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-        <activity android:name=".Ultradrone.JH_UltradroneActivity"
+        <activity android:name=".Enforcer.Enforcer_StartActivity"></activity>
+        <activity
+            android:name=".Ultradrone.JH_UltradroneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/FullScreen"/>
-
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".SettingsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

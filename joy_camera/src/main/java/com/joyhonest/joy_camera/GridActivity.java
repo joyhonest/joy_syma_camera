@@ -7,8 +7,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -30,6 +32,7 @@ import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,7 +50,8 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
     private  MyAdapter myAdapter;
 
     private List<MyNode> nodes;
-    private List<String> mList;
+    //private List<String> mList;
+    private List<Uri> mList;
 
     private List<String> local_PhotolistFiles; // = MyApp.getInstance().local_PhotoList;
     private List<String> local_VideolistFiles;
@@ -259,88 +263,101 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
 
     private void F_GetAllPhotoLocal()
     {
-        String sPath = MyApp.sLocalPath;
-        local_PhotolistFiles.clear();
-        if (sPath != null) {
-            File file = new File(sPath);
-            File files[] = file.listFiles();
-            if(files != null) {
-                for (int i = 0; i < files.length; i++) {
-                    File f = files[i];
-                    //String sFilename = f.getName(); //f.getAbsolutePath();
-                    //sFilename = sFilename.toLowerCase();
-                    String sVedor = f.getParent();
-                    sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
-                    String slocal = "";
-                    String sPath1="";
-                    slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-                    String sName = f.getPath();
-                    sPath1 = sName.toUpperCase();
-                    if (sPath1.endsWith(".PNG") || sPath1.endsWith(".JPG") || sPath1.endsWith(".BMP"))
-                    {
-                        if (MyApp.isAndroidQ())
-                        {
-                            if (MyApp.F_CheckIsExit(slocal, f.getName(), true)) {
-                                local_PhotolistFiles.add(f.getPath());
-                            } else {
-                                f.delete();
-                            }
-                        } else {
-                            local_PhotolistFiles.add(f.getPath());
-                        }
-                    }
-                }
-            }
-        }
-        mList = local_PhotolistFiles;
+        List<Uri> list = MyApp.F_GetAllLocalFiles(true);
+        mList = list;
         Collections.sort(mList, new MapComparator());
+
+//        String sPath = MyApp.sLocalPath;
+//        local_PhotolistFiles.clear();
+//        if (sPath != null) {
+//            File file = new File(sPath);
+//            File files[] = file.listFiles();
+//            if(files != null) {
+//                for (int i = 0; i < files.length; i++) {
+//                    File f = files[i];
+//                    //String sFilename = f.getName(); //f.getAbsolutePath();
+//                    //sFilename = sFilename.toLowerCase();
+//                    String sVedor = f.getParent();
+//                    sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
+//                    String slocal = "";
+//                    String sPath1="";
+//                    slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+//                    String sName = f.getPath();
+//                    sPath1 = sName.toUpperCase();
+//                    if (sPath1.endsWith(".PNG") || sPath1.endsWith(".JPG") || sPath1.endsWith(".BMP"))
+//                    {
+//                        if (MyApp.isAndroidQ())
+//                        {
+//                            if (MyApp.F_CheckIsExit(slocal, f.getName(), true)) {
+//                                local_PhotolistFiles.add(f.getPath());
+//                            } else {
+//                                f.delete();
+//                            }
+//                        } else {
+//                            local_PhotolistFiles.add(f.getPath());
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        mList = local_PhotolistFiles;
+//        Collections.sort(mList, new MapComparator());
     }
 
 
 
     private void F_GetAllVideoLocal()
     {
-
-        String sPath = MyApp.sLocalPath;
-        local_VideolistFiles.clear();
-        if (sPath != null) {
-            File file = new File(sPath);
-            File files[] = file.listFiles();
-            if(files !=null)
-            {
-                for (int i = 0; i < files.length; i++) {
-
-                    File f = files[i];
-                    String sVedor = f.getParent();
-                    sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
-                    String slocal = "";
-                    slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-                    String sName = f.getPath();
-                    String sPath1 = sName.toUpperCase();
-                    if (sPath1.endsWith(".MP4")) {
-                        if (MyApp.isAndroidQ()) {
-                            if (MyApp.F_CheckIsExit(slocal, f.getName(), false)) {
-                                local_VideolistFiles.add(f.getPath());
-                            } else {
-                                f.delete();
-                            }
-                        } else {
-                            local_VideolistFiles.add(f.getPath());
-                        }
-
-                    }
-                }
-            }
-        }
-        mList = local_VideolistFiles;
+        List<Uri> list = MyApp.F_GetAllLocalFiles(false);
+        mList = list;
         Collections.sort(mList, new MapComparator());
+
+//        String sPath = MyApp.sLocalPath;
+//        local_VideolistFiles.clear();
+//        if (sPath != null) {
+//            File file = new File(sPath);
+//            File files[] = file.listFiles();
+//            if(files !=null)
+//            {
+//                for (int i = 0; i < files.length; i++) {
+//
+//                    File f = files[i];
+//                    String sVedor = f.getParent();
+//                    sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
+//                    String slocal = "";
+//                    slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+//                    String sName = f.getPath();
+//                    String sPath1 = sName.toUpperCase();
+//                    if (sPath1.endsWith(".MP4")) {
+//                        if (MyApp.isAndroidQ()) {
+//                            if (MyApp.F_CheckIsExit(slocal, f.getName(), false)) {
+//                                local_VideolistFiles.add(f.getPath());
+//                            } else {
+//                                f.delete();
+//                            }
+//                        } else {
+//                            local_VideolistFiles.add(f.getPath());
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        mList = local_VideolistFiles;
+//        Collections.sort(mList, new MapComparator());
     }
 
-    class MapComparator implements Comparator<String> {
-        public int compare(String lhs, String rhs) {
-            return lhs.compareTo(rhs);
-        }
+//    class MapComparator implements Comparator<String> {
+//        public int compare(String lhs, String rhs) {
+//            return lhs.compareTo(rhs);
+//        }
+//
+//    }
 
+    class MapComparator implements Comparator<Uri> {
+        public int compare(Uri lhs, Uri rhs) {
+            return rhs.compareTo(lhs);
+        }
     }
 
     private String getFileName(String pathandname) {
@@ -378,6 +395,36 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    private Bitmap GetSuonuitu(Uri uri)
+    {
+
+        try {
+            ParcelFileDescriptor parcelFileDescriptor =
+                    getContentResolver().openFileDescriptor(uri, "r");
+            FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+
+            Bitmap bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor,null,options);
+
+            options.inJustDecodeBounds = false;
+            //计算缩放比
+            int be = (int) (options.outHeight / (float) 100);
+            if (be <= 0)
+                be = 1;
+            options.inSampleSize = be;
+            //重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false哦
+            bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor,null,options);
+            parcelFileDescriptor.close();
+            return bitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+
+
+    }
 
     private Bitmap GetSuonuitu(String sPath) {
 
@@ -403,6 +450,30 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
         //重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false哦
         bitmap = BitmapFactory.decodeFile(sPath, options);
         F_SaveBitmap(bitmap, strs);
+        return bitmap;
+    }
+
+
+    private Bitmap getVideoThumbnail(Uri uri) {
+
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            retriever.setDataSource(this,uri);
+            bitmap = retriever.getFrameAtTime(1);
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, 100, 100);
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                retriever.release();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
         return bitmap;
     }
 
@@ -459,14 +530,15 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
             }
             nodes = new ArrayList<MyNode>();
             if ( mList!= null) {
-                for (String sPath : mList) {
+                for(Uri uri : mList)
+                {
                     if(bExit)
                         break;
                     {
-                        Bitmap bitmap = GetSuonuitu(sPath);
+                        Bitmap bitmap = GetSuonuitu(uri);
                         MyNode node = new MyNode(nBrow);
                         node.bitmap = bitmap;
-                        node.sPath = sPath;
+                        node.sPath = uri.toString();
                         nodes.add(node);
                     }
                 }
@@ -481,15 +553,17 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
             }
             nodes = new ArrayList<MyNode>();
             if ( mList!= null) {
-                for (String sPath : mList) {
+                //for (String sPath : mList)
+                for(Uri uri : mList)
+                {
                     if(bExit)
                         break;;
 
                     {
-                        Bitmap bitmap = getVideoThumbnail(sPath);
+                        Bitmap bitmap = getVideoThumbnail(uri);
                         MyNode node = new MyNode(0);
                         node.bitmap = bitmap;
-                        node.sPath = sPath;
+                        node.sPath = uri.toString();
                         nodes.add(node);
                     }
                 }
@@ -735,6 +809,5 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
             String sUrl;
         }
     }
-
 
 }

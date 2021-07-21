@@ -6,8 +6,12 @@
         <attr name="rockerRadius" format="dimension"/>
     </declare-styleable>
     
-    <declare-styleable name="SeekBarJH">
+    <declare-styleable name="JH_SeekBar">
         <attr name="orientationSeekBar" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="JH_SeekBarA">
+        <attr name="orientationSeekBarA" format="string"/>
     </declare-styleable>
 
     <!-- 有描边的自定义TextView-->

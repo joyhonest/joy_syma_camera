@@ -3,7 +3,9 @@ package com.joyhonest.joy_camera;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
+import java.io.FileDescriptor;
 import java.util.List;
 
 public class DispPhotoActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
@@ -146,19 +149,46 @@ public class DispPhotoActivity extends AppCompatActivity implements ViewPager.On
     };
 
     private Bitmap LoadBitmap(String sPath) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        // 获取这个图片的宽和高
-        Bitmap bitmap = BitmapFactory.decodeFile(sPath, options); //此时返回bm为空
-        options.inJustDecodeBounds = false;
-        //计算缩放比
-        int be = (int) (options.outHeight / (float) 720);
-        if (be <= 0)
-            be = 1;
-        options.inSampleSize = be;
-        //重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false哦
-        bitmap = BitmapFactory.decodeFile(sPath, options);
-        return bitmap;
+
+        Uri uri = Uri.parse(sPath);
+
+        try {
+            ParcelFileDescriptor parcelFileDescriptor =
+                    getContentResolver().openFileDescriptor(uri, "r");
+            FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+
+            Bitmap bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor,null,options);
+
+            options.inJustDecodeBounds = false;
+            //计算缩放比
+            int be = (int) (options.outHeight / (float) 1280);
+            if (be <= 0)
+                be = 1;
+            options.inSampleSize = be;
+            //重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false哦
+            bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor,null,options);
+            parcelFileDescriptor.close();
+            return bitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+//        BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inJustDecodeBounds = true;
+//        // 获取这个图片的宽和高
+//        Bitmap bitmap = BitmapFactory.decodeFile(sPath, options); //此时返回bm为空
+//        options.inJustDecodeBounds = false;
+//        //计算缩放比
+//        int be = (int) (options.outHeight / (float) 720);
+//        if (be <= 0)
+//            be = 1;
+//        options.inSampleSize = be;
+//        //重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false哦
+//        bitmap = BitmapFactory.decodeFile(sPath, options);
+//        return bitmap;
     }
 
     @Subscriber(tag = "GotoExit_joy")

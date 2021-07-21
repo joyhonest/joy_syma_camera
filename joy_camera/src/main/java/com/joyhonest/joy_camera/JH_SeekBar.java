@@ -305,18 +305,18 @@ public class JH_SeekBar extends View {
 
     //初始化数据
     private void init(Context context, AttributeSet attributeSet) {
-        TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.SeekBarJH);
-        String orientation = typedArray.getString(R.styleable.SeekBarJH_orientationSeekBar);
+        TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.JH_SeekBar);
+        String orientation = typedArray.getString(R.styleable.JH_SeekBar_orientationSeekBar);
 
         if (orientation.equals(VERTICAL)) {
             mOrientation = orientation;
             bIsMode = true;
 
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.seekbartop_jh);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.seekbar_v_jh);
         } else {
             mOrientation = orientation;
 
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.jiantou_jh);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.seekbar_h_jh);
             bIsMode = false;
         }
         mPaint = new Paint();

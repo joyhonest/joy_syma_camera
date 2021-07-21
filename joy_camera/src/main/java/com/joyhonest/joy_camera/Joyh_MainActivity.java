@@ -158,7 +158,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void run() {
             F_SentFlyCmd();
-            Log.e(TAG,"Sent Cmd");
+            //Log.e(TAG,"Sent Cmd");
             H_Send.postDelayed(this, 20);
         }
     };
@@ -176,6 +176,9 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         int X_ADJ1 = binding.leftSeekBar.F_GetValue();      //旋转微调
         int X_ADJ2 = binding.rightSeekBar.F_GetValue();     //左右微调
         int Y_ADJ2 = binding.topSeekBar.F_GetValue();       //前后微调
+
+        Log.e(TAG, "Adj2 = "+Y_ADJ2);
+
         if(MyApp.bisRightMode) //
         {
             X2 = binding.customRockerLeftJH.GetX();
@@ -185,6 +188,8 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
             X_ADJ1 = binding.rightSeekBar.F_GetValue(); //
             X_ADJ2 = binding.leftSeekBar.F_GetValue();
             Y_ADJ2 = binding.topSeekBarA.F_GetValue();
+
+
         }
 
 //        Log.e(TAG, "Y1 = "+Y1+" X1 = "+X1+" Y2 = "+Y2+" X2 = "+X2);
@@ -240,7 +245,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         cmd[2] = (byte) X1;
         cmd[3] = (byte) X2;
 
-        Log.e(TAG,"UP ="+Y1);
+        //Log.e(TAG,"UP ="+Y1);
 
 
         cmd[4] = 0x20;          //油门微调  这里没有。

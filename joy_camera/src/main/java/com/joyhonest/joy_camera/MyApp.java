@@ -79,6 +79,8 @@ public class MyApp  // extends Application
     public  static  int   nSpeed = 0;  //0 Low  1 H
 
 
+    public static  String  sGallery="";
+
 
 
 //    @Override
@@ -125,7 +127,7 @@ public class MyApp  // extends Application
         String sVendor="";
         String sVendor_SD=null;
         sVendor=str;
-
+        sGallery = str;
         if (isAndroidQ()){
             File file = singleton.getExternalFilesDir(sVendor);
             if (file!=null){
@@ -170,20 +172,20 @@ public class MyApp  // extends Application
                 return;
             }
 
-            String sVedor = file1.getParent();
-            sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
+            //String sVedor = sGallery;
+
+            if(sGallery==null || sGallery.length()==0)
+            {
+                return;
+            }
 
             String slocal = "";
-
-
 
             String sfile = filename.substring(filename.lastIndexOf("/") + 1);
             String stype = filename.substring(filename.lastIndexOf(".") + 1);
             ContentResolver contentResolver = singleton.getContentResolver();
             ContentValues values = new ContentValues();
-
-            slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-
+            slocal = Environment.DIRECTORY_DCIM + File.separator + sGallery;
             Uri uri = null;
             if(F_CheckIsExit(slocal,sfile,bPhoto))
                 return;
@@ -222,10 +224,10 @@ public class MyApp  // extends Application
                     e.printStackTrace();
                 }
 
-//                    File file = new File(filename);
-//                    if (file.isFile() && file.exists()) {
-//                        file.delete();
-//                    }
+                    File file = new File(filename);
+                    if (file.isFile() && file.exists()) {
+                        file.delete();
+                    }
 
             }
         }
@@ -300,133 +302,213 @@ public class MyApp  // extends Application
                 ( i >> 24 & 0xFF) ;
     }
 
-    //删除图片或者视频，并且把它从系统图库中清除
-    public static void DeleteImage(String imgPath)
+
+    //sGallery
+
+    public static List<Uri> F_GetAllLocalFiles(boolean  bPicture)
     {
-        if(singleton == null)
-            return;
-        if(isAndroidQ())
+        String sPath = sGallery;
+
+        List list  = new ArrayList<Uri>();
+        Context mContext = singleton.getApplicationContext();
+        ContentResolver resolver = mContext.getContentResolver();
+        if(!sPath.endsWith("/"))
         {
-            String stype = imgPath.substring(imgPath.lastIndexOf(".") + 1);
-            Cursor cursor;
-            ContentResolver resolver = singleton.getContentResolver();
-            String sfile = imgPath.substring(imgPath.lastIndexOf("/") + 1);
-
-            File file1 = new File(imgPath);
-            if (!file1.exists()) {
-                return;
+            sPath+="/";
+        }
+        Cursor cursor;
+        Uri contentUri;
+        if(bPicture)
+        {
+            contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            if(isAndroidQ()) {
+                cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.RELATIVE_PATH + "=?",
+                        new String[]{Environment.DIRECTORY_DCIM + File.separator + sPath}, null);
             }
-
-            String sVedor = file1.getParent();
-            sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
-
-            String slocal = "";
-            boolean bPhoto = false;
-            if (stype.equalsIgnoreCase("jpg") || stype.equalsIgnoreCase("png"))
+            else
             {
-                bPhoto = true;
+//                cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + " like ?",
+//                        new String[]{"%"+Environment.DIRECTORY_DCIM + File.separator + sPath+"%"}, null);
+
+                cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + " like ?",
+                        new String[]{"%"+sLocalPath+"%"}, null);
             }
-//            if (bPhoto) {
-//                slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-//            } else {
-//                slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-//            }
-            slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
-            if(!slocal.endsWith("/"))
-            {
-                slocal+="/";
-            }
-
-            Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-            if (bPhoto)
-            {
-                cursor = resolver.query(contentUri, new String[]{MediaStore.Images.Media._ID},
-                        MediaStore.Images.Media.RELATIVE_PATH + "=? and " + MediaStore.Images.Media.DISPLAY_NAME + "=?",
-                        new String[]{slocal, sfile}, null);
-
-            } else {
-                contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                cursor = resolver.query(contentUri, new String[]{MediaStore.Video.Media._ID},
-                        MediaStore.Video.Media.RELATIVE_PATH + "=? and " + MediaStore.Video.Media.DISPLAY_NAME + "=?",
-                        new String[]{slocal, sfile}, null);
-
-            }
-
-            boolean result = false;
-            if (cursor != null) {
-                try {
-                    while (cursor.moveToFirst()) {
-                        long id = cursor.getLong(0);
-                        //Uri contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-//                        String[] columnNames = cursor.getColumnNames();
-//                        for (String columnName : columnNames) {
-//                            String s = cursor.getString(cursor.getColumnIndex(columnName));
-//                            Log.e("TAG",s);
-//                        }
-                        Uri uri = ContentUris.withAppendedId(contentUri, id);
-                        int count = resolver.delete(uri, null, null);
-                        result = count == 1;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if(cursor!=null)
-                {
-                    cursor.close();
-                }
-                {
-                    File file = new File(imgPath);
-                    if (file.isFile() && file.exists()) {
-                        file.delete();
-                    }
-                }
-            }
-
 
         }
-        else {
-
-            //Context mContext =  singleton.getApplicationContext();
-            String stype = imgPath.substring(imgPath.lastIndexOf(".") + 1);
-            ;//imgPath.substring(imgPath.length()-3,imgPath.length());
-            ContentResolver resolver = singleton.getContentResolver();
-            Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-            Cursor cursor;
+        else
+        {
+            contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+            if(isAndroidQ()) {
+                cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Video.Media._ID}, MediaStore.Video.Media.RELATIVE_PATH + "=?",
+                        new String[]{Environment.DIRECTORY_DCIM + File.separator +sPath}, null);
+            }
+            else
             {
-                if (stype.equalsIgnoreCase("jpg") || stype.equalsIgnoreCase("png")) {
-                    cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + "=?",
-                            new String[]{imgPath}, null);
-                } else {
-                    cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Video.Media._ID}, MediaStore.Video.Media.DATA + "=?",
-                            new String[]{imgPath}, null);
-                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                }
+//                cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Video.Media._ID}, MediaStore.Video.Media.DATA + " like ?",
+//                        new String[]{"%"+Environment.DIRECTORY_DCIM + File.separator +sPath+"%"}, null);
+                cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Video.Media._ID}, MediaStore.Video.Media.DATA + " like ?",
+                        new String[]{"%"+sLocalPath+"%"}, null);
             }
-            boolean result = false;
-            if (cursor != null) {
-                try {
-                    if (cursor.moveToFirst()) {
-                        long id = cursor.getLong(0);
-                        Uri uri = ContentUris.withAppendedId(contentUri, id);
-                        int count = resolver.delete(uri, null, null);
-                        result = count == 1;
-                    }
-                } catch (Exception e) {
-                    ;
-                }
-                {
-                    File file = new File(imgPath);
-                    if (file.isFile() && file.exists()) {
-                        file.delete();
-                    }
-                }
-               // cursor.close();
-            }
-
-
         }
 
+        if (cursor != null)
+        {
+            while (cursor.moveToNext()) {
+                long id = cursor.getLong(0);
+                Uri uri = ContentUris.withAppendedId(contentUri, id);
+                list.add(uri);
+            }
+        }
+        return list;
     }
+
+
+
+    public static void DeleteImage(String imgPath) {
+
+        Uri uri = Uri.parse(imgPath);
+        Context mContext = singleton.getApplicationContext();
+        ContentResolver resolver = mContext.getContentResolver();
+        try {
+            int count = resolver.delete(uri, null, null);
+        } catch (Exception e) {
+            ;
+        }
+    }
+
+    //删除图片或者视频，并且把它从系统图库中清除
+//    public static void DeleteImage(String imgPath)
+//    {
+//        if(singleton == null)
+//            return;
+//        if(isAndroidQ())
+//        {
+//            String stype = imgPath.substring(imgPath.lastIndexOf(".") + 1);
+//            Cursor cursor;
+//            ContentResolver resolver = singleton.getContentResolver();
+//            String sfile = imgPath.substring(imgPath.lastIndexOf("/") + 1);
+//
+//            File file1 = new File(imgPath);
+//            if (!file1.exists()) {
+//                return;
+//            }
+//
+//            String sVedor = sGallery;
+//            if(sVedor.length()==0) {
+//                sVedor = file1.getParent();
+//                sVedor = sVedor.substring(sVedor.lastIndexOf("/") + 1);
+//            }
+//            if(sVedor==null || sVedor.length()==0)
+//            {
+//                return;
+//            }
+//            String slocal = "";
+//            boolean bPhoto = false;
+//            if (stype.equalsIgnoreCase("jpg") || stype.equalsIgnoreCase("png"))
+//            {
+//                bPhoto = true;
+//            }
+////            if (bPhoto) {
+////                slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+////            } else {
+////                slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+////            }
+//            slocal = Environment.DIRECTORY_DCIM + File.separator + sVedor;
+//            if(!slocal.endsWith("/"))
+//            {
+//                slocal+="/";
+//            }
+//
+//            Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+//            if (bPhoto)
+//            {
+//                cursor = resolver.query(contentUri, new String[]{MediaStore.Images.Media._ID},
+//                        MediaStore.Images.Media.RELATIVE_PATH + "=? and " + MediaStore.Images.Media.DISPLAY_NAME + "=?",
+//                        new String[]{slocal, sfile}, null);
+//
+//            } else {
+//                contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+//                cursor = resolver.query(contentUri, new String[]{MediaStore.Video.Media._ID},
+//                        MediaStore.Video.Media.RELATIVE_PATH + "=? and " + MediaStore.Video.Media.DISPLAY_NAME + "=?",
+//                        new String[]{slocal, sfile}, null);
+//
+//            }
+//
+//            boolean result = false;
+//            if (cursor != null) {
+//                try {
+//                    while (cursor.moveToFirst()) {
+//                        long id = cursor.getLong(0);
+//                        //Uri contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+////                        String[] columnNames = cursor.getColumnNames();
+////                        for (String columnName : columnNames) {
+////                            String s = cursor.getString(cursor.getColumnIndex(columnName));
+////                            Log.e("TAG",s);
+////                        }
+//                        Uri uri = ContentUris.withAppendedId(contentUri, id);
+//                        int count = resolver.delete(uri, null, null);
+//                        result = count == 1;
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                if(cursor!=null)
+//                {
+//                    cursor.close();
+//                }
+//                {
+//                    File file = new File(imgPath);
+//                    if (file.isFile() && file.exists()) {
+//                        file.delete();
+//                    }
+//                }
+//            }
+//
+//
+//        }
+//        else {
+//
+//            //Context mContext =  singleton.getApplicationContext();
+//            String stype = imgPath.substring(imgPath.lastIndexOf(".") + 1);
+//            ;//imgPath.substring(imgPath.length()-3,imgPath.length());
+//            ContentResolver resolver = singleton.getContentResolver();
+//            Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+//            Cursor cursor;
+//            {
+//                if (stype.equalsIgnoreCase("jpg") || stype.equalsIgnoreCase("png")) {
+//                    cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.Media._ID}, MediaStore.Images.Media.DATA + "=?",
+//                            new String[]{imgPath}, null);
+//                } else {
+//                    cursor = resolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Video.Media._ID}, MediaStore.Video.Media.DATA + "=?",
+//                            new String[]{imgPath}, null);
+//                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+//                }
+//            }
+//            boolean result = false;
+//            if (cursor != null) {
+//                try {
+//                    if (cursor.moveToFirst()) {
+//                        long id = cursor.getLong(0);
+//                        Uri uri = ContentUris.withAppendedId(contentUri, id);
+//                        int count = resolver.delete(uri, null, null);
+//                        result = count == 1;
+//                    }
+//                } catch (Exception e) {
+//                    ;
+//                }
+//                {
+//                    File file = new File(imgPath);
+//                    if (file.isFile() && file.exists()) {
+//                        file.delete();
+//                    }
+//                }
+//               // cursor.close();
+//            }
+//
+//
+//        }
+//
+//    }
     public static void F_makeFullScreen(Context context)
     {
         checkDeviceHasNavigationBar(context);

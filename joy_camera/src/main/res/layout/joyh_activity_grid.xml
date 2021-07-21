@@ -4,11 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/gallery_bg_jh"
+    android:background="@mipmap/brow_background_jh"
     tools:context=".JOYH_GridActivity">
 <!--    android:background="@mipmap/gallery_bg"-->
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
+        android:background="#D8ff44"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+    <Button
+        android:id="@+id/but_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:background="@mipmap/back_icon_jh"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/TitleView"
@@ -19,38 +39,49 @@
         android:text="@string/JOY_PHOTOS"
         android:textColor="#FFFFFFFF"
         android:textSize="30dp"
+
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/but_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/but_back" />
 
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/but_delete"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="@string/JOY_delete"
         android:textColor="#FF007AFF"
-        android:textSize="24dp"
+        app:backgroundTint="#30000000"
+        app:cornerRadius="10dp"
+        app:layout_constraintHeight_percent="0.12"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/but_back"
         app:layout_constraintBottom_toBottomOf="@+id/but_back"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/but_cancel"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.12"
         android:layout_marginRight="20dp"
         android:text="@string/JOY_cancel"
+        app:cornerRadius="10dp"
         android:textColor="#FF007AFF"
-        android:textSize="24dp"
+        app:backgroundTint="#30000000"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         app:layout_constraintRight_toLeftOf="@+id/but_delete"
         app:layout_constraintTop_toTopOf="@+id/but_back"
         app:layout_constraintBottom_toBottomOf="@+id/but_back"
-
-
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <GridView
         android:id="@+id/Gridview"
@@ -60,7 +91,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/but_back" />
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
 
     <com.joyhonest.joy_camera.WaitView
         android:id="@+id/waitView"
@@ -75,17 +106,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-    <Button
-        android:id="@+id/but_back"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@mipmap/back_icon_jh"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintHeight_percent="0.18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,7 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#80000000"
-        android:visibility="visible"
+        android:visibility="gone"
         android:elevation="4dp"
         >
 

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
+        android:src="@mipmap/brow_background_jh"
          />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -206,7 +207,7 @@
         />
 
 
-    <com.joyhonest.joy_camera.JH_SeekBar
+    <com.joyhonest.joy_camera.JH_SeekBarA
         android:id="@+id/rightSeekBar"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -218,27 +219,26 @@
         app:layout_constraintDimensionRatio="6:1"
         app:layout_constraintStart_toStartOf="@+id/customRocker_rightJH"
         app:layout_constraintEnd_toEndOf="@+id/customRocker_rightJH"
-        app:orientationSeekBar="HORIZONTAL" />
+        app:orientationSeekBarA="HORIZONTAL" />
 
-        <com.joyhonest.joy_camera.JH_SeekBar
+        <com.joyhonest.joy_camera.JH_SeekBarA
             android:id="@+id/leftSeekBar"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="6:1"
             app:layout_constraintEnd_toEndOf="@+id/customRocker_leftJH"
             app:layout_constraintStart_toStartOf="@+id/customRocker_leftJH"
             app:layout_constraintTop_toBottomOf="@+id/customRocker_leftJH"
-            app:orientationSeekBar="HORIZONTAL" />
+            app:orientationSeekBarA="HORIZONTAL" />
 
-        <com.joyhonest.joy_camera.JH_SeekBar
+        <com.joyhonest.joy_camera.JH_SeekBarA
             android:id="@+id/topSeekBar"
             android:layout_width="0dp"
             android:layout_height="0dp"
 
-
             app:layout_constraintVertical_bias="0.36"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:6"
             app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +247,7 @@
             app:layout_constraintLeft_toRightOf="@+id/customRocker_rightJH"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:orientationSeekBar="VERTICAL" />
+            app:orientationSeekBarA="VERTICAL" />
 
         <TextView
         android:id="@+id/leftText"
