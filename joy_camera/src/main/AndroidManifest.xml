@@ -10,7 +10,9 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-        <activity android:name=".Enforcer.Enforcer_StartActivity"></activity>
+        <activity android:name=".Enforcer.Enforcer_StartActivity">
+
+        </activity>
         <activity
             android:name=".Ultradrone.JH_UltradroneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -40,7 +42,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".Joyh_MainActivity"
+            android:name=".Joyh_TerraCopter"
             android:configChanges="keyboard|keyboardHidden|screenSize"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/FullScreen" />

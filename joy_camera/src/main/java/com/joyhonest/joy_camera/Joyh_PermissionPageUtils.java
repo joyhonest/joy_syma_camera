@@ -95,7 +95,7 @@ public class Joyh_PermissionPageUtils {
             Intent intent = new Intent(packageName);
 //            设置标记将Activity放到一个新的Task中
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.Joyh_MainActivity");
+            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.Joyh_TerraCopter");
             intent.setComponent(comp);
             mContext.startActivity(intent);
         } catch (Exception e) {

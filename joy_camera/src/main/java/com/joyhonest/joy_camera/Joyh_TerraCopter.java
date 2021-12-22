@@ -16,19 +16,16 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 
 import com.joyhonest.joy_camera.databinding.JoyhActivityMainBinding;
 import com.joyhonest.wifination.wifination;
 
-import com.joyhonest.joy_camera.R;
-
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
-public class Joyh_MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "Joyh_MainActivity";
+public class Joyh_TerraCopter extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "Joyh_TerraCopter";
     private Joyh_PermissionAsker mAsker;
     private int nAsk = -1;
 
@@ -84,7 +81,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
                 .setTitle("permission")
                 .setMessage("The device needs to be allowed permission to function properly")
                 .setNegativeButton("OK",(dialog, which) -> {
-                    Joyh_PermissionPageUtils joyhPermissionPageUtils = new Joyh_PermissionPageUtils(Joyh_MainActivity.this);
+                    Joyh_PermissionPageUtils joyhPermissionPageUtils = new Joyh_PermissionPageUtils(Joyh_TerraCopter.this);
                     joyhPermissionPageUtils.jumpPermissionPage();
                 }).create();
         //权限通过执行第一个run方法，权限未通过执行第二个run方法
@@ -177,7 +174,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
         int X_ADJ2 = binding.rightSeekBar.F_GetValue();     //左右微调
         int Y_ADJ2 = binding.topSeekBar.F_GetValue();       //前后微调
 
-        Log.e(TAG, "Adj2 = "+Y_ADJ2);
+
 
         if(MyApp.bisRightMode) //
         {
@@ -643,7 +640,7 @@ public class Joyh_MainActivity extends AppCompatActivity implements View.OnClick
             MyApp.PlayBtnVoice();
        //     MyApp.bNormalExit = true;
             wifination.naStopRecord_All();
-            Intent mainIntent = new Intent(Joyh_MainActivity.this, BrowSelectActivity.class);
+            Intent mainIntent = new Intent(Joyh_TerraCopter.this, BrowSelectActivity.class);
             startActivity(mainIntent);
             overridePendingTransition(0, 0);
         }

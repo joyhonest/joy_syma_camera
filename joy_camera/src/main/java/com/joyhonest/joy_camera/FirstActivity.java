@@ -34,7 +34,7 @@ public class FirstActivity extends AppCompatActivity {
                 MyApp.PlayBtnVoice();
                 if(MyApp.CheckConnectedDevice())
                 {
-                    Intent mainIntent = new Intent(FirstActivity.this, Joyh_MainActivity.class);
+                    Intent mainIntent = new Intent(FirstActivity.this, Joyh_TerraCopter.class);
                     startActivity(mainIntent);
                 }
                 else

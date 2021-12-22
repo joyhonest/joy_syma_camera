@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.joyhonest.joy_camera.BrowSelectActivity;
-import com.joyhonest.joy_camera.Joyh_MainActivity;
 import com.joyhonest.joy_camera.Joyh_PermissionAsker;
 import com.joyhonest.joy_camera.Joyh_PermissionPageUtils;
 import com.joyhonest.joy_camera.MyApp;

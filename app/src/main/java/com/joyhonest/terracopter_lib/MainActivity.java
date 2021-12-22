@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.joyhonest.joy_camera.Joyh_TerraCopter;
 import com.joyhonest.joy_camera.MyApp;
 
 
@@ -23,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 //                com.joyhonest.joy_camera.MyApp.bisShowControler = true;
 //                com.joyhonest.joy_camera.MyApp.bisAutoSave = false;
 //                com.joyhonest.joy_camera.MyApp.bisResetTuneData = false;
-                  startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Joyh_MainActivity.class));
-              // startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Ultradrone.JH_UltradroneActivity.class));
+                  startActivity(new Intent(MainActivity.this, Joyh_TerraCopter.class));
+               //startActivity(new Intent(MainActivity.this, com.joyhonest.joy_camera.Ultradrone.JH_UltradroneActivity.class));
             }
         });
 
